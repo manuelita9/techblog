@@ -14,3 +14,12 @@ router.get('/', (req, res) => {
       return;
     }
   
+    res.render('login');
+  });
+
+  router.get('/blog', withAuth, async (req, res) => {
+    try {
+      // Get all the posts from the Post table, including the associated user
+      const posts = await Post.findAll({ include: User });
+  
+   
